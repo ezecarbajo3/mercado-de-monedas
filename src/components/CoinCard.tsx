@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CoinListing } from '../types/coin';
 import { useCurrency } from '../context/CurrencyContext';
 import { GradingBadge } from './GradingBadge';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 interface CoinCardProps {
   listing: CoinListing;
@@ -25,21 +25,21 @@ export const CoinCard: React.FC<CoinCardProps> = ({
   return (
     <div
       onClick={() => onSelect(listing)}
-      className="group flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md transition-all cursor-pointer"
+      className="group flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors cursor-pointer"
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-square bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center p-5 border-b border-zinc-100 dark:border-zinc-800">
+      <div className="relative w-full aspect-square bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center p-4 border-b border-zinc-100 dark:border-zinc-800">
         <img
           src={photoSide === 'obverse' ? listing.photos.obverse : listing.photos.reverse}
           alt={listing.title}
-          className="w-full h-full object-contain filter drop-shadow-sm group-hover:scale-102 transition-transform duration-200"
+          className="w-full h-full object-contain"
           onError={(e) => {
             (e.target as HTMLElement).style.display = 'none';
           }}
         />
 
-        {/* Badges Overlay */}
-        <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+        {/* Top Badges */}
+        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
           <GradingBadge
             grade={listing.grade}
             showHelpIcon
@@ -48,57 +48,52 @@ export const CoinCard: React.FC<CoinCardProps> = ({
           />
 
           {listing.allowsParqueRivadavia && (
-            <span className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
               <MapPin className="w-3 h-3" />
-              <span>Parque Rivadavia</span>
+              <span>Parque</span>
             </span>
           )}
         </div>
 
-        {/* Flip Button */}
-        <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        {/* Photo Flip */}
+        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               setPhotoSide(prev => (prev === 'obverse' ? 'reverse' : 'obverse'));
             }}
-            className="text-xs font-medium px-2.5 py-1 rounded bg-white/90 dark:bg-zinc-900/90 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 shadow-xs hover:bg-white"
+            className="text-[11px] font-medium px-2 py-0.5 rounded bg-white/90 dark:bg-zinc-800/90 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 shadow-xs"
           >
-            {photoSide === 'obverse' ? 'Ver Reverso' : 'Ver Anverso'}
+            {photoSide === 'obverse' ? 'Reverso' : 'Anverso'}
           </button>
         </div>
       </div>
 
-      {/* Card Content */}
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+      {/* Details */}
+      <div className="p-3 flex-1 flex flex-col justify-between space-y-2.5">
         <div>
-          {/* Metadata */}
-          <div className="text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="text-[11px] text-zinc-500 font-mono">
             {listing.country} • {listing.year} • {listing.metal}
           </div>
 
-          <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 mt-1 line-clamp-1">
+          <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5 line-clamp-1">
             {listing.title}
           </h3>
-
-          <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 line-clamp-2 leading-relaxed">
-            {listing.publicComment}
-          </p>
         </div>
 
-        {/* Price & Action */}
-        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+        {/* Price & Actions */}
+        <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
           <div>
-            <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="text-base font-bold text-zinc-900 dark:text-zinc-100 font-mono">
               {dualPrice.primaryText}
             </div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="text-[11px] text-zinc-400 font-mono">
               {dualPrice.secondaryText}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             {listing.acceptsOffers && (
               <button
                 type="button"
@@ -106,7 +101,7 @@ export const CoinCard: React.FC<CoinCardProps> = ({
                   e.stopPropagation();
                   onOpenOffer(listing);
                 }}
-                className="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+                className="px-2 py-1 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200"
               >
                 Ofertar
               </button>
@@ -118,10 +113,9 @@ export const CoinCard: React.FC<CoinCardProps> = ({
                 e.stopPropagation();
                 onSelect(listing);
               }}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center gap-1"
+              className="px-2.5 py-1 rounded text-xs font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800"
             >
-              <span>Ver</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              Ver
             </button>
           </div>
         </div>
