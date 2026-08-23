@@ -1,24 +1,25 @@
 # 🪙 MERCADO DE MONEDAS - ESPECIFICACIÓN INTEGRAL Y LÓGICA DEL PROYECTO
 > **Documento Maestro de Arquitectura, Flujos Operativos, Modelo de Datos y Negocio**  
-> *Versión: 1.1.0 — Estado: Planificación Definitiva y Estructura Central*
+> *Versión: 1.2.0 — Estado: Especificación Consolidada y Lógica Operativa*
 
 ---
 
 ## ÍNDICE GENERAL
 1. [Visión, Filosofía y Propuesta de Valor](#1-visión-filosofía-y-propuesta-de-valor)
-2. [Usuarios, Registro y Onboarding Bipolar (Nacional / Internacional)](#2-usuarios-registro-y-onboarding)
-3. [Modelo de Datos de Publicación (Campos Completos)](#3-modelo-de-datos-de-publicación)
-4. [Escala Oficial de Conservación y Asistente Didáctico `(?)`](#4-escala-de-conservación-y-asistente-didáctico)
-5. [Lógica de Precios, Moneda Dual (ARS/USD) y DolarHoy](#5-lógica-de-precios-moneda-dual-y-dolarhoy)
-6. [Modalidad de Venta: Precio Fijo vs. Negociación de Ofertas](#6-modalidad-de-venta-precio-fijo-vs-ofertas)
-7. [Métodos de Publicación (Individual y Masivo vía Excel)](#7-métodos-de-publicación)
-8. [Catálogo Numismático, Integración Numista y Estrategia de Caché](#8-catálogo-numismático-y-numista)
-9. [Buscador Inteligente, Filtros Facetados y Comparador Multivendedor](#9-buscador-filtros-y-comparador)
-10. [Logística Numismática Especializada: "Hub Parque Rivadavia" y Envíos](#10-logística-especializada-parque-rivadavia)
-11. [Mecanismos Antielusión, Anonimato y Reputación Comunitaria](#11-mecanismos-antielusión-y-reputación)
-12. [Filosofía de Monetización (Comisión vs. Suscripción)](#12-filosofía-de-monetización)
-13. [Interfaz de Usuario (UI/UX) y Selector de Tema](#13-interfaz-de-usuario-uiux)
-14. [Ecosistema Modular de Documentación Futura](#14-ecosistema-modular-de-documentación)
+2. [Portada Cinematográfica y Navegación Institucional](#2-portada-cinematográfica-y-navegación-institucional)
+3. [Usuarios, Registro y Onboarding Bipolar (Nacional / Internacional)](#3-usuarios-registro-y-onboarding)
+4. [Modelo de Datos de Publicación (Campos Completos)](#4-modelo-de-datos-de-publicación)
+5. [Escala Oficial de Conservación y Progresión Intermedia (+ y -)](#5-escala-oficial-de-conservación-y-progresión-intermedia--y--)
+6. [Lógica de Precios, Moneda Dual (ARS/USD) y Dólar Blue](#6-lógica-de-precios-moneda-dual-arsusd-y-dólar-blue)
+7. [Modalidad de Venta: Precio Fijo vs. Negociación de Ofertas](#7-modalidad-de-venta-precio-fijo-vs-negociación-de-ofertas)
+8. [Métodos de Publicación y Check-list de Entrega Condicional](#8-métodos-de-publicación-y-check-list-de-entrega-condicional)
+9. [Catálogo Numismático, Integración Numista y Estrategia de Caché](#9-catálogo-numismático-integración-numista-y-estrategia-de-caché)
+10. [Buscador Inteligente, Filtros Facetados y Comparador Multivendedor](#10-buscador-inteligente-filtros-facetados-y-comparador-multivendedor)
+11. [Logística Numismática Especializada: "Hub Parque Rivadavia" y Envíos](#11-logística-numismática-especializada-hub-parque-rivadavia-y-envíos)
+12. [Mecanismos Antielusión, Anonimato y Reputación Comunitaria](#12-mecanismos-antielusión-anonimato-y-reputación-comunitaria)
+13. [Filosofía de Monetización](#13-filosofía-de-monetización)
+14. [Directrices de Interfaz de Usuario (UI/UX), Tipografía y Estilo Editorial](#14-directrices-de-interfaz-de-usuario-uiux-tipografía-y-estilo-editorial)
+15. [Ecosistema Modular de Documentación Futura](#15-ecosistema-modular-de-documentación-futura)
 
 ---
 
@@ -26,7 +27,7 @@
 
 **Mercado de Monedas** nace para solucionar los problemas estructurales que sufren coleccionistas y comerciantes en plataformas generalistas (MercadoLibre, eBay, Marketplace de Facebook):
 
-* **Comisiones desmedidas (15% al 25%)**: En monedas de bajo valor destruyen el margen y en monedas caras generan comisiones absurdas, empujando a los usuarios a negociar por fuera.
+* **Comisiones desmedidas (15% al 25%)**: En monedas de bajo valor destruyen el margen y en monedas caras generan costos absurdos, empujando a los usuarios a negociar por fuera sin garantías.
 * **Falta de rigor técnico**: En plataformas tradicionales no existen filtros por Ceca, Metal, KM#, CJ#, Diámetro o Peso real.
 * **Criterio de conservación difuso**: Los vendedores califican como "impecable" piezas gastadas o limpiadas.
 * **Desconexión logística comunitaria**: La numismática argentina gira en torno a puntos de encuentro históricos como el **Parque Rivadavia** (CABA). Las plataformas convencionales obligan a pagar envíos caros por correo para compras pequeñas.
@@ -40,7 +41,20 @@ graph LR
 
 ---
 
-## 2. Usuarios, Registro y Onboarding
+## 2. Portada Cinematográfica y Navegación Institucional
+
+### A. Experiencia de Portada
+* **Atmósfera Audiovisual**: Integración de video de fondo en loop con iluminación rasante sobre relieves de época y texturas metálicas.
+* **Manifiesto de la Revolución Numismática**: Posicionamiento como el primer ecosistema federal que unifica a coleccionistas y comerciantes de todo el país con transparencia técnica y acceso libre para publicar.
+* **Showcase Editorial de Piezas Históricas**: Muestra en primer plano de piezas fundacionales argentinas (*8 Reales 1813 Potosí, Patacón 1881 Oudiné, 5 Pesos Argentino Oro y 50 Centavos Libertad*).
+* **Flujo hacia el Mercado**: Botón directo *"Explorar Publicaciones"* con transición y scroll fluido hacia las categorías y publicaciones activas sin rodeos ni fricción comercial.
+
+### B. Regla Global de Navegación
+* Al hacer clic sobre el logotipo o isotipo `🪙 Mercado de Monedas` en cualquier pantalla, la plataforma restablece de inmediato los filtros y búsquedas activas, retornando al inicio.
+
+---
+
+## 3. Usuarios, Registro y Onboarding
 
 ### A. Tipos de Cuenta
 * **Cuenta Unificada (Comprador / Vendedor)**: Todo usuario registrado puede tanto comprar piezas como publicar sus propias monedas sin trámites burocráticos separados.
@@ -50,8 +64,8 @@ Al registrarse por primera vez, el usuario completa:
 1. **Datos Personales**: Nombre y Apellido (privados), Alias/Username público para la comunidad.
 2. **Ubicación Geográfica**:
    * País (Default: *Argentina*).
-   * Provincia / Estado (ej. *Buenos Aires, Salta, Santa Fe, Tierra del Fuego*).
-   * Localidad / Ciudad (ej. *Mar del Plata, Salta Capital, Ushuaia, CABA*).
+   * Provincia / Estado (ej. *Buenos Aires, Salta, Santa Fe, Córdoba, CABA*).
+   * Localidad / Ciudad.
    * Código Postal y Dirección de entrega (privada, solo para envíos).
 3. **Preferencia de Alcance de Mercado**:
    * *Pregunta de Onboarding*: `¿Qué monedas te interesa ver y comprar?`
@@ -61,211 +75,149 @@ Al registrarse por primera vez, el usuario completa:
 
 ---
 
-## 3. Modelo de Datos de Publicación
+## 4. Modelo de Datos de Publicación
 
 Cada ficha de moneda contiene atributos públicos (para los compradores) y privados (para el control del vendedor):
 
 | Campo | Tipo de Dato | Visibilidad | Propósito / Ejemplo |
 | :--- | :--- | :--- | :--- |
-| **Fotos** | Lista de imágenes | Pública | Mínimo 2 (Anverso y Reverso con buena luz), hasta 8 para fotos de canto o macro. |
-| **Título / Denominación** | Texto | Pública | Ej: *"50 Centavos 1941"* |
+| **Fotos** | Lista de imágenes | Pública | Mínimo 2 (Anverso y Reverso con buena luz), foto de canto opcional recomendada. |
+| **Título / Denominación** | Texto | Pública | Ej: *"50 Centavos 1941 Libertad"* |
 | **País Emisor** | Selector / Texto | Pública | Ej: *Argentina, España, EE.UU., Chile, Perú, etc.* |
 | **Año de Acuñación** | Numérico / Texto | Pública | Ej: *1941, 1881-O (año + marca de ceca si aplica)* |
 | **Valor Facial** | Texto | Pública | Ej: *50 Centavos, 1 Peso, 2 Reales, 5 Francos, 1 Dólar* |
-| **Composición / Metal** | Selector | Pública | *Oro, Plata (.900, .720, etc.), Cuproníquel, Cobre, Bronce, Aluminio, Bimetálica* |
+| **Composición / Metal** | Selector | Pública | *Oro, Plata (.900 / .925), Cuproníquel, Cobre, Bronce, Aluminio, Bimetálica* |
 | **Diámetro** | Decimal (\(mm\)) | Pública | Ej: *25.0 mm* |
 | **Peso** | Decimal (\(g\)) | Pública | Ej: *6.50 g* |
-| **Grado de Conservación** | Enum (PR a UNC / PROOF) | Pública | Nivel estandarizado según la escala oficial. |
-| **Precio Base** | Decimal | Pública | Monto fijado por el vendedor (ej: `25000` o `25`). |
-| **Moneda Base** | Enum (`ARS` / `USD`) | Pública | Divisa en la que se calculó el precio original. |
+| **Grado de Conservación** | Enum con grados intermedios | Pública | Escala de 19 pasos (desde Mala hasta Proof, incluyendo `+` y `-`). |
+| **Precio Base** | Decimal | Pública | Monto fijado por el vendedor (ej: `$15.000` o `USD 100`). |
+| **Moneda Base** | Enum (`ARS` / `USD`) | Pública | Divisa en la que se fijó el precio original. |
 | **¿Acepta Ofertas?** | Booleano (`true`/`false`) | Pública | Switch individual por publicación. |
-| **Referencia Catálogo (Externa)** | Texto | Pública | Código numismático: **KM#**, **CJ#**, Schön, Calicó, etc. |
-| **Referencia Interna (SKU)** | Texto | **Privado (Vendedor)** | Código propio del vendedor para ubicar la pieza en su álbum/fichero. |
-| **Comentario Público** | Texto | Pública | Ej: *"Excelente pátina de época, sin marcas de limpieza ni golpes de borde"*. |
-| **Comentario Privado** | Texto | **Privado (Vendedor)** | Ej: *"Comprada en lote lote San Telmo a $8.000. Guardada en Bandeja B-12"*. |
-| **Opciones de Entrega** | Flags / Configuración | Pública | Parque Rivadavia (Sí/No + Frecuencia), Correo Argentino / Andreani, Retiro Local. |
+| **Referencia Catálogo** | Texto | Pública | Código numismático: **KM#**, **CJ#**, Schön, Calicó, etc. |
+| **Referencia Interna (SKU)** | Texto | **Privado (Vendedor)** | Código propio del vendedor para ubicar la pieza en su álbum o bandeja. |
+| **Comentario Público** | Texto | Pública | Ej: *"Excelente pátina de época, sin marcas de limpieza ni golpes de canto"*. |
+| **Comentario Privado** | Texto | **Privado (Vendedor)** | Ej: *"Comprada en San Telmo por $8.000. Bandeja B-12"*. |
+| **Opciones de Entrega** | Checklist condicional | Pública | Configuración de Correo, Retiro en Mano y Parque Rivadavia con plazos. |
 
 ---
 
-## 4. Escala de Conservación y Asistente Didáctico `(?)`
+## 5. Escala Oficial de Conservación y Progresión Intermedia (+ y -)
 
-### A. Escala Oficial Implementada (7 Grados + Condición Especial)
+### A. Progresión Numismática Estricta (Orden Creciente)
+La plataforma implementa la escala internacional adaptada al coleccionismo hispanoamericano y argentino, contemplando los grados intermedios:
 
-```
-[ PR: Mala ] ── [ G: Regular ] ── [ VG: Buena ] ── [ F: Muy Buena ] ── [ VF: Muy Fina ] ── [ XF: Excelente ] ── [ UNC: Sin Circular ]
-                                                                                                        └─ [ PROOF: Prueba ]*
-```
+$$\text{Mala (PR)} \rightarrow \text{Regular (G)} \rightarrow \text{Regular+ (G+)} \rightarrow \text{Buena- (VG-)} \rightarrow \text{Buena (VG)} \rightarrow \text{Buena+ (VG+)} \rightarrow \text{Muy Buena- (MB-)} \rightarrow \text{Muy Buena (MB/F)} \rightarrow \mathbf{\text{MB+ (F+)}} \rightarrow \mathbf{\text{EX- (XF-)}} \rightarrow \mathbf{\text{EX (XF)}} \rightarrow \text{EX+ (XF+)} \rightarrow \text{SC- (UNC-)} \rightarrow \text{SC (UNC)} \rightarrow \text{SC+ (UNC+)} \rightarrow \text{PROOF}$$
 
-1. **PR (Poor - Mala)**: Moneda sumamente desgastada con pérdida grave de relieve. Leyendas y fechas casi ilegibles o borradas. Rayas o golpes severos. *(Ref. visual: Morgan Dollar 1901 liso)*.
-2. **G (Good - Regular)**: Muy desgastada. Siluetas aplanadas pero leyendas y contornos principales identificables. *(Ref. visual: Morgan Dollar 1887 gastada)*.
-3. **VG (Very Good - Buena)**: Relieves muy gastados con contornos poco definidos. Leyendas y fecha completas. Golpes leves y marcas de circulación visibles. *(Ref. visual: Morgan Dollar 1900)*.
-4. **F (Fine - Muy Buena)**: Desgaste moderado pero uniforme. Relieves y leyendas claras. Los detalles más altos del diseño empiezan a distinguirse. *(Ref. visual: Morgan Dollar 1900)*.
-5. **VF (Very Fine - Muy Fina)**: Ligero desgaste uniforme únicamente en los puntos más altos (cabello sobre la oreja, pecho del águila). Mantiene gran parte del brillo original. *(Ref. visual: Morgan Dollar 1903)*.
-6. **XF (Extra Fine - Excelente)**: Moneda casi nueva. Circulación mínima. Puede haber perdido algo de brillo pero no tiene rayas ni golpes visibles a simple vista. *(Ref. visual: Morgan Dollar 1881)*.
-7. **UNC (Uncirculated - Sin Circular / Flor de Cuño)**: Moneda nueva de ceca, jamás circuló. Conserva el 100% de su brillo original (*mint luster*) y campos intactos. Sin desgaste en puntos altos. *(Ref. visual: Morgan Dollar 1881 brillante)*.
-8. **PROOF (Prueba / Fondo Espejo)**: Tipo de acuñación especial (no un grado de desgaste). Cuños pulidos, fondo espejo y figuras satinadas/mate. Se presenta encapsulada para coleccionistas. *(Ref. visual: Silver Eagle 2006 Proof)*.
+* **Grados Intermedios (`+` y `-`)**: Permiten al vendedor y comprador calificar con exactitud piezas de transición (ej. una moneda con desgaste leve pero pátina y cuño superiores a la media califica como **MB+** o **EX-**).
+* **PROOF**: Acuñación especial de colección con fondo espejo y relieve mate/satinado.
 
-### B. Interacción del Asistente Didáctico `(?)`
-* Al lado de la barra deslizante de conservación se sitúa un icono `(?)`.
-* **Vendedores Experimentados**: Deslizan la barra directamente en 1 segundo.
-* **Vendedores Nuevos**: Al pasar el cursor sobre `(?)` (o tocar en mobile), se abre un **panel flotante interactivo** con la infografía técnica con flechas explicativas y la fotografía real correspondiente al grado seleccionado.
+### B. Barra Deslizante Interactiva (*Grading Slider*)
+* En lugar de selectores rígidos, tanto en el formulario de publicación como en la guía didáctica se utiliza una **barra deslizante continua/paso a paso**:
+  * **Desktop**: Arrastre fluido manteniendo presionado el clic del mouse.
+  * **Mobile / Celular**: Deslizamiento táctil con el dedo.
+  * Muestra en tiempo real la nomenclatura combinada (`MB+ / F+`), descripción técnica de desgaste y foto real de referencia.
 
 ---
 
-## 5. Lógica de Precios, Moneda Dual y DolarHoy
+## 6. Lógica de Precios, Moneda Dual (ARS/USD) y Dólar Blue
 
-### A. Fijación de Precios en ARS o USD
-* El vendedor puede publicar en **Pesos Argentinos (ARS)** o en **Dólares Estadounidenses (USD)**.
-* Si el vendedor publica en USD (ej. `USD 10`), el precio en ARS se ajusta automáticamente con el tipo de cambio del día, protegiendo al vendedor contra la inflación.
-* Si el vendedor publica en ARS (ej. `$15.000`), el precio se muestra en ARS y su equivalente en USD.
+### A. Visualización Predeterminada en Pesos Argentinos (ARS)
+* La plataforma muestra por defecto todos los precios de forma nítida y destacada en **Pesos Argentinos** (ej. `$ 15.000`), manteniendo una equivalencia secundaria en dólares.
+* El usuario puede alternar la divisa activa con el switch `[ ARS | USD ]` en la barra superior.
 
-### B. Cotización de Referencia: Dólar Blue Venta (`dolarhoy.com`)
-* **Análisis de Rendimiento y Consumo Computacional**:
-  * **Consumo virtualmente nulo**: El backend ejecuta un proceso liviano programado (*Cron Job*) que realiza **1 única consulta cada 60 minutos** a `https://dolarhoy.com` para extraer la cotización de **Dólar Blue Venta**.
-  * La cotización obtenida (ej. `$1.320`) se almacena en caché de servidor y base de datos con su timestamp.
-  * Cuando los miles de compradores navegan la web y alternan el botón `[ ARS | USD ]` en la cabecera, la conversión se efectúa en milisegundos en el navegador del usuario (cálculo cliente), garantizando **máxima velocidad sin carga de servidor**.
+### B. Cotización de Referencia (Dólar Blue Venta)
+* El backend consulta periódicamente la cotización de **Dólar Blue Venta** (referencia base `$1.550 ARS/USD`).
+* Todas las publicaciones expresadas en dólares se convierten en tiempo real para compradores en pesos sin desactualizarse ante oscilaciones cambiarias.
+* El cálculo de conversión se ejecuta en el cliente (navegador), optimizando recursos de servidor.
 
 ---
 
-## 6. Modalidad de Venta: Precio Fijo vs. Ofertas
+## 7. Modalidad de Venta: Precio Fijo vs. Negociación de Ofertas
 
-* **Control Individual por Moneda**: Cada publicación cuenta con el switch `¿Acepta ofertas? (Sí / No)`.
-* **Modo Solo Precio Fijo**: Solo se muestra el botón *"Comprar ahora"*.
-* **Modo Acepta Ofertas**:
-  * Se muestran los botones *"Comprar ahora"* y *"Hacer una oferta"*.
-  * **Flujo de Negociación Ágil**:
-    1. El comprador envía una oferta en monto exacto (ej. pide $18.000 por una moneda de $20.000).
-    2. El vendedor recibe notificación y puede: **Aceptar**, **Contraofertar** o **Rechazar**.
-    3. Límite de 3 ofertas por comprador en la misma publicación para evitar spam.
-    4. La aceptación bloquea la compra al precio acordado durante 24 horas.
+* **Control Individual por Publicación**: El vendedor decide si una moneda acepta ofertas o se vende únicamente a precio fijo.
+* **Flujo de Negociación Ágil**:
+  1. El comprador envía una contrapropuesta económica con monto puntual.
+  2. El vendedor recibe notificación y puede: **Aceptar**, **Contraofertar** o **Rechazar**.
+  3. Límite estricto de **3 intentos de oferta por comprador** en una misma pieza para evitar spam.
+  4. La aceptación formal genera un bloqueo de reserva por 24 horas para completar el pago.
 
 ---
 
-## 7. Métodos de Publicación
+## 8. Métodos de Publicación y Check-list de Entrega Condicional
 
-```mermaid
-graph TD
-    Panel[Panel del Vendedor] --> Single[Publicación Individual Web]
-    Panel --> Bulk[Publicador Masivo Excel]
-    
-    Single --> Form1[Formulario Asistido + Slider + Fotos]
-    
-    Bulk --> Step1[1. Descargar Plantilla .xlsx / .csv con Listas Desplegables]
-    Bulk --> Step2[2. Rellenar Filas: Datos, Precios, SKU, Comentarios Privados/Públicos]
-    Bulk --> Step3[3. Subir Archivo + Fotos vinculadas por SKU]
-    Bulk --> Step4[4. Previsualización, Validación de Errores y Publicación en Lote]
-```
+### A. Check-list de Formas de Entrega al Publicar
+No todos los vendedores entregan en Parque Rivadavia (especialmente quienes residen en el interior del país). Por ello, el formulario de publicación exige una check-list explícita:
 
-### A. Publicación Individual Asistida
-* Carga de fotos rápida desde móvil o PC.
-* Autocompletado desde la base de datos interna si la moneda ya fue catalogada antes.
+1. `[X] Envío por Correo Postal (Correo Argentino / Andreani a todo el país)` *(activado por defecto)*.
+2. `[ ] Retiro en mano / domicilio del vendedor` *(acuerdo directo)*.
+3. `[ ] ¿Realizás entrega presencial en Parque Rivadavia (CABA)?` *(desactivado por defecto)*:
+   * Al tildar **Sí**, se despliega el menú de plazos y frecuencia:
+     - 🔘 **Todos los domingos** (10:00 a 14:00 hs — Vendedores habituales de CABA/GBA).
+     - 🔘 **En las próximas 2 semanas** (primer domingo disponible).
+     - 🔘 **En 1 mes** (primer domingo del próximo mes).
+     - 🔘 **Fecha puntual específica** (con selector de calendario exacto, ej: *Domingo 20 de Septiembre*).
 
-### B. Publicador Masivo (Bulk Import vía Excel)
-* **Plantilla descargable**: Excel preformateado con columnas validadas (País, Denominación, Año, Metal, Grado de Conservación, Precio, Moneda, Acepta Ofertas, KM/CJ, SKU, Comentario Público, Comentario Privado).
-* **Vinculación de Imágenes Masivas**:
-  * *Método 1*: Columna de URLs web.
-  * *Método 2 (Recomendado)*: Carga de carpeta de fotos donde los archivos llevan el nombre de la **Referencia Interna (SKU)** (ej: `SKU120_1.jpg`, `SKU120_2.jpg`). El sistema vincula automáticamente las fotos con cada fila del Excel.
+### B. Publicador Masivo vía Excel (Bulk Upload)
+* Permite a comerciantes cargar cientos de piezas en lote mediante plantilla `.xlsx` / `.csv` estandarizada vinculando fotos por código SKU.
 
 ---
 
-## 8. Catálogo Numismático y Numista
+## 9. Catálogo Numismático, Integración Numista y Estrategia de Caché
 
-### A. Estrategia de Cuotas de API Numista (~2.000 req/mes)
-1. **Capa Gratuita (Carga Manual Asistida)**: El vendedor completa los campos estándar sin costo.
-2. **Caché Numismático Propio (Base Local)**: Toda moneda catalogada por primera vez almacena sus metadatos (KM#, tirada, metal, peso, dimensiones) en la base de datos de *Mercado de Monedas*. Las futuras publicaciones de esa misma moneda consumen los datos locales sin tocar la API de Numista.
-3. **Importador Automático Numista (Servicio Pro / Valor Agregado)**: Función avanzada para auto-rellenar fichas con 1 clic consumiendo la API externa.
+* **Caché Local Propio**: Toda moneda catalogada por primera vez almacena sus metadatos (KM#, tirada, metal, peso, diámetro) en la base de datos interna. Las siguientes publicaciones reutilizan estos datos sin saturar APIs externas.
+* **Normalización de Fichas**: Agrupación de publicaciones por identificador de catálogo para alimentar el comparador multivendedor.
 
 ---
 
-## 9. Buscador, Filtros y Comparador
+## 10. Buscador Inteligente, Filtros Facetados y Comparador Multivendedor
 
-### A. Buscador Inteligente (Fuzzy Search)
-* No exige coincidencia exacta de texto. Si el usuario busca *"Patria 1883 50 centavos plata"*, el motor descompone los términos (País: Argentina, Época: Monedas Patrias, Año: 1883, Metal: Plata, Denominación: 50 Centavos) y devuelve los resultados correctos.
+### A. Buscador Inteligente
+* Reconocimiento de términos numismáticos combinados (País, Época, Año, Metal, KM#, Denominación).
 
-### B. Filtros Facetados Inspirados en Numista
-* **País y Continente**.
-* **Rango de Años / Antigüedad** (ej. Coloniales, Siglo XIX, Siglo XX, Actuales).
-* **Metal / Composición** (Oro, Plata, Cuproníquel, Cobre, etc.).
-* **Estado de Conservación** (Filtrar por grado mínimo, ej. *Desde VF en adelante*).
-* **Rango de Precio** (En ARS o USD).
-* **Modalidad**: *Acepta ofertas* / *Solo precio fijo*.
-* **Logística**: *Entrega en Parque Rivadavia* (Sí / No) / *Ubicación del vendedor por provincia*.
+### B. Filtros Facetados
+* Filtrado por País, Rango de Años, Metal, **Conservación Mínima (con estados + y -)**, Rango de Precios, Acepta Ofertas y Disponibilidad de Entrega en Parque Rivadavia.
 
-### C. Ficha de Catálogo con Comparador Multivendedor
-
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  FICHA OFICIAL: Argentina - 50 Centavos 1941 (KM# 39) - Cuproníquel - Ø 25mm - 6.5g     │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│  3 VENDEDORES DISPONIBLES PARA ESTA MONEDA:                                            │
-│                                                                                        │
-│  1. [Foto Real]  Estado: UNC (Sin Circular)   $12.000 ARS   [Comprar] [Ofertar]       │
-│     Vendedor: Mar del Plata | ★★★★★ (4.9) | 🌳 Entrega en Parque Rivadavia: 1er Dom/Mes │
-│                                                                                        │
-│  2. [Foto Real]  Estado: VF (Muy Fina)        $6.500 ARS    [Comprar]                 │
-│     Vendedor: CABA          | ★★★★★ (5.0) | 🌳 Entrega en Parque Rivadavia: Todos los Dom│
-│                                                                                        │
-│  3. [Foto Real]  Estado: G (Regular)          $2.500 ARS    [Comprar] [Ofertar]       │
-│     Vendedor: Salta         | ★★★★☆ (4.2) | 📦 Envío por Correo Argentino / Andreani  │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
+### C. Comparador Multivendedor
+* En la ficha de una moneda se listan todos los ejemplares ofrecidos por distintos vendedores, permitiendo comparar de un vistazo: fotos reales, grado exacto (**MB+**, **EX-**, **SC**), precio y opciones de entrega.
 
 ---
 
-## 10. Logística Especializada: "Hub Parque Rivadavia"
+## 11. Logística Numismática Especializada: "Hub Parque Rivadavia" y Envíos
 
-### La Realidad del Mercado Numismático Argentino
-Vendedores de todo el país (ej. Mar del Plata, Rosario, Córdoba, Salta) consolidan paquetes de múltiples clientes y los envían mensualmente a un contacto/comisionista de confianza en CABA. Ese comisionista atiende el domingo en el **Parque Rivadavia** y reparte los pedidos a los coleccionistas locales a un costo mínimo o nulo.
-
-### Integración en la Plataforma
-1. **Configuración en el Perfil del Vendedor**:
-   - `¿Realizas entregas en Parque Rivadavia?`: `[X] Sí  [ ] No`
-   - `Frecuencia de entrega`:
-     - *Todos los domingos (vendedores locales de CABA / GBA)*.
-     - *Quincenal*.
-     - *Mensual (ej. primer domingo de cada mes)*.
-     - *Fecha puntual configurable (ej. Domingo 15 de Septiembre)*.
-2. **Flujo de Retiro para el Comprador**:
-   - El comprador elige *"Retiro en Parque Rivadavia"* al comprar.
-   - El sistema emite un **Ticket / Código de Retiro Seguro**.
-   - El domingo pactado, el comprador acude al punto de entrega en Parque Rivadavia, presenta el código y retira su moneda embalada.
+* **Funcionamiento**: Vendedores de todo el país pueden consolidar lotes y enviarlos a un comisionista o puesto en Parque Rivadavia para entrega dominical sin costo de envío individual para compradores de CABA/GBA.
+* **Ticket de Retiro / PIN Seguro**: El comprador presenta su código de retiro dominical en el puesto para recibir su paquete embalado.
+* **Envíos por Correo**: Integración con servicios postales tradicionales con código de seguimiento para entregas en todo el territorio nacional.
 
 ---
 
-## 11. Mecanismos Antielusión y Reputación
+## 12. Mecanismos Antielusión, Anonimato y Reputación Comunitaria
 
-### A. Anonimato Pre-Venta (Protección de la Plataforma)
-* Para evitar que las partes deriven la venta por privado y eludan la plataforma:
-  * No se divulgan nombres y apellidos completos, números telefónicos, direcciones exactas ni enlaces externos en las publicaciones.
-  * La ficha muestra: *Ubicación general (Ciudad/Provincia), Calificación en estrellas y Estadísticas de entregas*.
-  * Los datos de contacto y despacho se revelan únicamente **una vez confirmada la operación en la plataforma**.
-
-### B. Reputación y Calificación Comunitaria Obligatoria
-* Al completarse la entrega, es obligatorio que el comprador valore la transacción para mantener la transparencia de la comunidad:
-  * **Exactitud del Estado de Conservación**: ¿La moneda coincidía con el grado seleccionado (PR a UNC)?
-  * **Embalaje Numismático**: ¿La pieza vino protegida en cartón/cápsula sin riesgo de rayaduras?
-  * **Velocidad y Cumplimiento de Entrega**.
+* **Anonimato Pre-Venta**: No se exponen datos personales directos (teléfono, domicilio exacto) antes de la compra para proteger la seguridad y evitar transacciones informales sin respaldo.
+* **Calificación Comunitaria Obligatoria**:
+  * Exactitud en el estado de conservación declarado.
+  * Calidad y seguridad del embalaje numismático (cartones, cápsulas).
+  * Puntualidad y cumplimiento de entrega.
 
 ---
 
-## 12. Filosofía de Monetización
+## 13. Filosofía de Monetización
 
-* **Objetivo**: Cobro de una comisión pequeña por venta (ej. 3% a 6%) para que el vendedor prefiera la seguridad y visibilidad de la plataforma antes que arriesgarse por canales informales.
-* **Equidad**: Las monedas económicas aportan centavos y las monedas valiosas aportan proporcionalmente más, manteniendo un esquema justo para todos los perfiles de vendedores.
-* *(La integración técnica específica de pasarelas, custodia y split de pagos se detallará en el archivo complementario `PAGOS_Y_COMISIONES.md`)*.
+* Cobro de una comisión pequeña por venta cerrada (3% a 6%), brindando un entorno seguro, trazable y económico en comparación con plataformas generalistas.
 
 ---
 
-## 13. Interfaz de Usuario (UI/UX)
+## 14. Directrices de Interfaz de Usuario (UI/UX), Tipografía y Estilo Editorial
 
-* **Selector de Tema (Esquina superior derecha)**:
-  * **Modo Claro (Por Defecto)**: Fondo blanco nítido con alto contraste.
-  * **Modo Oscuro (Gris Oscuro / Antracita)**: Fondo en tonos #18181B / #121212 que destaca el brillo metálico de piezas de plata y oro.
-* **Selector Bimonetario**: `[ ARS | USD ]` en la barra superior accesible en todo momento.
+* **Estilo Sobrio y Minimalista**: Enfoque inspirado en catálogos y casas de subasta numismáticas de referencia (limpieza visual, sin frases de autoelogio ni marketing artificial).
+* **Tipografía Profesional**:
+  * Fuente principal: **Inter** / tipografía de sistema con pesos equilibrados (400 regular, 500 medium, 600 semi-bold).
+  * Datos técnicos, cotizaciones y referencias: tipografía monoespaciada limpia (**JetBrains Mono** / SF Mono).
+* **Modo Claro por Defecto**: Fondo blanco nítido (`#ffffff` / `#fafafa`) y neutral con alto contraste y legibilidad. Modo oscuro configurable mediante variante `@custom-variant dark` sin interferencia obligatoria del sistema operativo.
+* **Precios Directos**: Presentación clara del valor en Pesos Argentinos con equivalencia secundaria en USD.
 
 ---
 
-## 14. Ecosistema Modular de Documentación
+## 15. Ecosistema Modular de Documentación Futura
 
 * [`LOGICA_DEL_PROYECTO.md`](file:///Users/ezecarbajo/Desktop/Proyectos/MKT/LOGICA_DEL_PROYECTO.md) *(Cerebro Maestro y Arquitectura Central)*.
 * `PAGOS_Y_COMISIONES.md` *(Módulo de Pasarelas, Comisiones y Split de Pagos)*.
