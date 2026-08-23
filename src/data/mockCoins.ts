@@ -108,25 +108,25 @@ export const MOCK_LISTINGS: CoinListing[] = [
     viewsCount: 384,
     createdAt: '2026-08-20T10:00:00Z'
   },
-  // 50 Centavos 1941 - Vendedor 2 (VF)
+  // 50 Centavos 1941 - Vendedor 2 (VF+ / MF+)
   {
     id: 'coin-50c-1941-vf',
     catalogId: 'cat-50c-1941',
-    title: '50 Centavos 1941 - Muy Fina (VF)',
+    title: '50 Centavos 1941 - Muy Fina + (MF+ / VF+)',
     country: 'Argentina',
     year: 1941,
     faceValue: '50 Centavos',
     metal: 'Cuproníquel',
     diameterMm: 25.0,
     weightG: 6.5,
-    grade: 'VF',
+    grade: 'VF+',
     basePrice: 6500,
     baseCurrency: 'ARS',
     acceptsOffers: false,
     kmReference: 'KM# 39',
     cjReference: 'CJ# 42.1',
     sku: 'ALB-3-1941',
-    publicComment: 'Muy buena definición en los rayos de la libertad y escudo. Desgaste leve uniforme.',
+    publicComment: 'Muy buena definición en los rayos de la libertad y escudo. Desgaste leve uniforme superior a la media.',
     photos: {
       obverse: '/grading/747235957_27152987717735075_1596405980242332744_n.jpg',
       reverse: '/grading/747903783_27152987411068439_3279205326141260011_n.jpg'
@@ -179,7 +179,7 @@ export const MOCK_LISTINGS: CoinListing[] = [
     metal: 'Plata (.900 / .925)',
     diameterMm: 39.0,
     weightG: 27.0,
-    grade: 'VF',
+    grade: 'VF-',
     basePrice: 850,
     baseCurrency: 'USD',
     acceptsOffers: true,
@@ -209,7 +209,7 @@ export const MOCK_LISTINGS: CoinListing[] = [
     metal: 'Plata (.900 / .925)',
     diameterMm: 37.0,
     weightG: 25.0,
-    grade: 'XF',
+    grade: 'XF+',
     basePrice: 180,
     baseCurrency: 'USD',
     acceptsOffers: true,

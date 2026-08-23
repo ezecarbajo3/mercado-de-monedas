@@ -1,4 +1,12 @@
-export type GradingGrade = 'PR' | 'G' | 'VG' | 'F' | 'VF' | 'XF' | 'UNC' | 'PROOF';
+export type GradingGrade = 
+  | 'PR' 
+  | 'G' | 'G+' 
+  | 'VG-' | 'VG' | 'VG+' 
+  | 'F-' | 'F' | 'F+' 
+  | 'VF-' | 'VF' | 'VF+' 
+  | 'XF-' | 'XF' | 'XF+' 
+  | 'UNC-' | 'UNC' | 'UNC+' 
+  | 'PROOF';
 
 export type Currency = 'ARS' | 'USD';
 

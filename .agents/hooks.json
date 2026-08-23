@@ -3,11 +3,11 @@
     "enabled": true,
     "PreToolUse": [
       {
-        "matcher": "ask_question",
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 scripts/antigravity_notifier.py question",
+            "command": "python3 /Users/ezecarbajo/Desktop/Proyectos/MKT/.agents/scripts/antigravity_notifier.py pre_tool",
             "timeout": 10
           }
         ]
@@ -16,7 +16,7 @@
     "Stop": [
       {
         "type": "command",
-        "command": "python3 scripts/antigravity_notifier.py stop",
+        "command": "python3 /Users/ezecarbajo/Desktop/Proyectos/MKT/.agents/scripts/antigravity_notifier.py stop",
         "timeout": 10
       }
     ]

@@ -271,7 +271,7 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
               <option value="ALL">Cualquier estado</option>
               {GRADING_ORDER.map(grade => (
                 <option key={grade} value={grade}>
-                  Desde {grade} ({GRADING_SCALE[grade].nameEs})
+                  Desde {GRADING_SCALE[grade].codeEs} ({GRADING_SCALE[grade].nameEs})
                 </option>
               ))}
             </select>

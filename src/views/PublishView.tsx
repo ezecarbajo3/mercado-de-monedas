@@ -11,6 +11,7 @@ import {
   Lock,
   FileText
 } from 'lucide-react';
+import { GradingSlider } from '../components/GradingSlider';
 
 interface PublishViewProps {
   onPublishSuccess: (newCoin: Partial<CoinListing>) => void;
@@ -294,42 +295,13 @@ export const PublishView: React.FC<PublishViewProps> = ({
               </div>
             </div>
 
-            {/* Conservation Grade */}
-            <div className="space-y-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-                  3. Estado de Conservación
-                </label>
-                <button
-                  type="button"
-                  onClick={() => onOpenGradingGuide(grade)}
-                  className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 underline inline-flex items-center gap-1"
-                >
-                  <HelpCircle className="w-3.5 h-3.5" />
-                  <span>Ver guía (?)</span>
-                </button>
-              </div>
-
-              <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
-                {GRADING_ORDER.map((g) => {
-                  const isSelected = grade === g;
-                  return (
-                    <button
-                      key={g}
-                      type="button"
-                      onClick={() => setGrade(g)}
-                      className={`p-2 rounded-lg border text-center transition-all ${
-                        isSelected
-                          ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-900 dark:border-zinc-100 font-bold'
-                          : 'bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300'
-                      }`}
-                    >
-                      <div className="text-xs font-bold">{g}</div>
-                      <div className="text-[10px] truncate">{GRADING_SCALE[g].nameEs}</div>
-                    </button>
-                  );
-                })}
-              </div>
+            {/* Conservation Grade with Draggable Slider */}
+            <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800">
+              <GradingSlider
+                value={grade}
+                onChange={setGrade}
+                onOpenGuide={() => onOpenGradingGuide(grade)}
+              />
             </div>
           </div>
 

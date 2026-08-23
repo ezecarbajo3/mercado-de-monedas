@@ -19,8 +19,8 @@ export const GradingBadge: React.FC<GradingBadgeProps> = ({
   const info = GRADING_SCALE[grade] || GRADING_SCALE.VF;
 
   const sizeClasses = {
-    sm: 'text-xs px-2.5 py-0.5',
-    md: 'text-xs px-3 py-1',
+    sm: 'text-xs px-2 py-0.5',
+    md: 'text-xs px-2.5 py-1',
     lg: 'text-sm px-3.5 py-1.5'
   };
 
@@ -28,9 +28,9 @@ export const GradingBadge: React.FC<GradingBadgeProps> = ({
     <div className="inline-flex items-center gap-1.5">
       <span
         className={`inline-flex items-center gap-1.5 rounded-md border font-medium ${info.badgeBg} ${info.badgeColor} ${sizeClasses[size]}`}
-        title={`${info.grade} (${info.nameEs}) - ${info.shortDesc}`}
+        title={`${info.grade} / ${info.codeEs} (${info.nameEs}) - ${info.shortDesc}`}
       >
-        <span className="font-bold">{info.grade}</span>
+        <span className="font-bold">{info.codeEs || info.grade}</span>
         <span className="opacity-80 border-l border-current/20 pl-1.5">
           {info.nameEs}
         </span>
