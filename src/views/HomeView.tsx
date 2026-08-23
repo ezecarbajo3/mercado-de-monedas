@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CoinListing } from '../types/coin';
 import { CoinCard } from '../components/CoinCard';
-import { ArrowRight } from 'lucide-react';
+import { HeroCinematic } from '../components/HeroCinematic';
+import { ArrowRight, SlidersHorizontal } from 'lucide-react';
 
 interface HomeViewProps {
   listings: CoinListing[];
@@ -20,6 +21,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
+  const marketRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     { id: 'ALL', name: 'Todas' },
@@ -30,6 +32,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
     { id: 'SIGLO_XX', name: 'Siglo XX' },
     { id: 'MUNDO', name: 'Internacionales' }
   ];
+
+  const handleExploreScroll = () => {
+    if (marketRef.current) {
+      marketRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const filteredListings = listings.filter(item => {
     if (activeCategory === 'ALL') return true;
@@ -43,47 +51,66 @@ export const HomeView: React.FC<HomeViewProps> = ({
   });
 
   return (
-    <div className="space-y-6">
-      {/* Category Tabs */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 border-b border-zinc-200 dark:border-zinc-800 text-xs">
-        {categories.map(cat => (
-          <button
-            key={cat.id}
-            onClick={() => setActiveCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-md font-medium whitespace-nowrap transition-colors ${
-              activeCategory === cat.id
-                ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900'
-            }`}
-          >
-            {cat.name}
-          </button>
-        ))}
-      </div>
+    <div className="space-y-8">
+      {/* 3D Cinematic Dynamic Interactive Hero */}
+      <HeroCinematic
+        onExploreClick={handleExploreScroll}
+        onPublishClick={() => onNavigate('publish')}
+      />
 
-      {/* Main Listings Grid */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs text-zinc-500">
-          <span>{filteredListings.length} publicaciones disponibles</span>
+      {/* Main Marketplace Content */}
+      <div ref={marketRef} className="space-y-6 pt-2">
+        {/* Category Filter Tabs */}
+        <div className="flex items-center justify-between gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto text-xs pb-1 sm:pb-0">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-md font-medium whitespace-nowrap transition-colors ${
+                  activeCategory === cat.id
+                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-xs'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={() => onNavigate('catalog')}
-            className="font-medium text-zinc-800 dark:text-zinc-200 hover:underline inline-flex items-center gap-1"
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 hover:underline shrink-0"
           >
-            <span>Ver con filtros avanzados</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filtros avanzados</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredListings.map(coin => (
-            <CoinCard
-              key={coin.id}
-              listing={coin}
-              onSelect={onSelectCoin}
-              onOpenOffer={onOpenOffer}
-              onOpenGradingGuide={onOpenGradingGuide}
-            />
-          ))}
+        {/* Listings Count & Grid */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span>{filteredListings.length} publicaciones disponibles en esta sección</span>
+            <button
+              onClick={() => onNavigate('catalog')}
+              className="font-medium text-zinc-800 dark:text-zinc-200 hover:underline inline-flex items-center gap-1"
+            >
+              <span>Ver catálogo completo</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filteredListings.map(coin => (
+              <CoinCard
+                key={coin.id}
+                listing={coin}
+                onSelect={onSelectCoin}
+                onOpenOffer={onOpenOffer}
+                onOpenGradingGuide={onOpenGradingGuide}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
