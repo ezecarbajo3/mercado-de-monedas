@@ -175,14 +175,14 @@ export const CoinDetailView: React.FC<CoinDetailViewProps> = ({
               )}
             </div>
 
-            {/* Delivery */}
+            {/* Delivery Methods */}
             <div className="space-y-1.5 pt-3 border-t border-zinc-100 dark:border-zinc-800">
               <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 block">
-                Forma de entrega:
+                Forma de entrega disponible:
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {coin.allowsParqueRivadavia && (
+                {coin.allowsParqueRivadavia ? (
                   <button
                     type="button"
                     onClick={() => setSelectedDelivery('parque')}
@@ -197,10 +197,10 @@ export const CoinDetailView: React.FC<CoinDetailViewProps> = ({
                       <span>Parque Rivadavia</span>
                     </div>
                     <div className="text-[11px] text-zinc-500 mt-0.5">
-                      {coin.seller.parqueFrequency} (Gratis)
+                      {coin.parqueTiming || coin.seller.parqueFrequency} (Gratis)
                     </div>
                   </button>
-                )}
+                ) : null}
 
                 <button
                   type="button"

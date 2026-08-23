@@ -23,9 +23,11 @@ export type MetalType =
 
 export type ParqueRivadaviaFrequency = 
   | 'Todos los domingos'
+  | 'En las próximas 2 semanas'
   | 'Quincenal (1er y 3er domingo)'
+  | 'En 1 mes (primer domingo del mes)'
   | 'Mensual (1er domingo del mes)'
-  | 'Fecha puntual pactada'
+  | 'Fecha puntual personalizada'
   | 'No realiza entregas en Parque';
 
 export interface SellerStats {
@@ -76,7 +78,9 @@ export interface CoinListing {
   };
   seller: Seller;
   allowsParqueRivadavia: boolean;
+  parqueTiming?: string; // Ej: "Todos los domingos", "En las próximas 2 semanas", "Domingo 15 de Septiembre"
   allowsShipping: boolean; // Correo Argentino / Andreani
+  allowsLocalPickup?: boolean; // Retiro en mano / domicilio
   featured?: boolean;
   viewsCount: number;
   createdAt: string;

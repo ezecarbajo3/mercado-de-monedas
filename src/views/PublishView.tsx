@@ -41,10 +41,12 @@ export const PublishView: React.FC<PublishViewProps> = ({
   const [cjReference, setCjReference] = useState('');
   const [sku, setSku] = useState('ALB-1-A');
   const [publicComment, setPublicComment] = useState('Excelente estado de conservación, sin golpes ni marcas.');
-  const [privateComment, setPrivateComment] = useState('Comprada en San Telmo por $8.000');
-  const [allowsParque, setAllowsParque] = useState(true);
-  const [parqueFrequency, setParqueFrequency] = useState<ParqueRivadaviaFrequency>('Todos los domingos');
+  const [privateComment, setPrivateComment] = useState('Costo de compra: $8.000');
   const [allowsShipping, setAllowsShipping] = useState(true);
+  const [allowsLocalPickup, setAllowsLocalPickup] = useState(false);
+  const [allowsParque, setAllowsParque] = useState(false);
+  const [parqueTimingOption, setParqueTimingOption] = useState<'sundays' | '2_weeks' | '1_month' | 'custom_date'>('sundays');
+  const [parqueCustomDate, setParqueCustomDate] = useState('2026-09-20');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
@@ -53,6 +55,14 @@ export const PublishView: React.FC<PublishViewProps> = ({
   const calculatedOtherCurrency = baseCurrency === 'ARS'
     ? `≈ US$ ${(numericPrice / dolarBlueRate).toFixed(2)}`
     : `≈ $ ${(numericPrice * dolarBlueRate).toLocaleString('es-AR')} ARS`;
+
+  const getParqueTimingText = () => {
+    if (!allowsParque) return undefined;
+    if (parqueTimingOption === 'sundays') return 'Todos los domingos';
+    if (parqueTimingOption === '2_weeks') return 'En las próximas 2 semanas';
+    if (parqueTimingOption === '1_month') return 'En 1 mes (primer domingo del mes)';
+    return `Fecha puntual: ${parqueCustomDate}`;
+  };
 
   const handleSubmitSingle = (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +95,9 @@ export const PublishView: React.FC<PublishViewProps> = ({
           reverse: '/grading/748216107_27152987704401743_1830395168745860999_n.jpg'
         },
         allowsParqueRivadavia: allowsParque,
-        allowsShipping
+        parqueTiming: getParqueTimingText(),
+        allowsShipping,
+        allowsLocalPickup
       });
 
       setTimeout(() => setShowSuccessToast(false), 3000);
@@ -372,48 +384,136 @@ export const PublishView: React.FC<PublishViewProps> = ({
             </div>
           </div>
 
-          {/* Logistics & SKU */}
+          {/* Logistics Checklist & Private SKU */}
           <div className="p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-4 shadow-xs">
             <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-              5. Entrega y Control del Vendedor
+              5. Opciones de Entrega y Envío
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700 space-y-2">
-                <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-zinc-800 dark:text-zinc-200">
+            <div className="space-y-3">
+              {/* Delivery Methods Checklist */}
+              <div className="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700 space-y-3">
+                <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                  Seleccioná los métodos de entrega que ofrecés:
+                </div>
+
+                {/* Option 1: Shipping */}
+                <label className="flex items-center gap-2.5 cursor-pointer text-xs text-zinc-800 dark:text-zinc-200">
                   <input
                     type="checkbox"
-                    checked={allowsParque}
-                    onChange={(e) => setAllowsParque(e.target.checked)}
+                    checked={allowsShipping}
+                    onChange={(e) => setAllowsShipping(e.target.checked)}
                     className="w-4 h-4 rounded text-zinc-900"
                   />
-                  <span>Entrega en Parque Rivadavia</span>
+                  <span>Envío por Correo (Correo Argentino / Andreani a todo el país)</span>
                 </label>
 
-                {allowsParque && (
-                  <select
-                    value={parqueFrequency}
-                    onChange={(e: any) => setParqueFrequency(e.target.value)}
-                    className="w-full p-1.5 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded text-xs text-zinc-800 dark:text-zinc-200 outline-none"
-                  >
-                    <option value="Todos los domingos">Todos los domingos</option>
-                    <option value="Quincenal (1er y 3er domingo)">Quincenal</option>
-                    <option value="Mensual (1er domingo del mes)">Mensual (1er domingo)</option>
-                    <option value="Fecha puntual pactada">Fecha puntual pactada</option>
-                  </select>
-                )}
+                {/* Option 2: Local Pickup */}
+                <label className="flex items-center gap-2.5 cursor-pointer text-xs text-zinc-800 dark:text-zinc-200">
+                  <input
+                    type="checkbox"
+                    checked={allowsLocalPickup}
+                    onChange={(e) => setAllowsLocalPickup(e.target.checked)}
+                    className="w-4 h-4 rounded text-zinc-900"
+                  />
+                  <span>Retiro en mano / domicilio del vendedor</span>
+                </label>
+
+                {/* Option 3: Parque Rivadavia */}
+                <div className="pt-2 border-t border-zinc-200 dark:border-zinc-700/60 space-y-2.5">
+                  <label className="flex items-center gap-2.5 cursor-pointer text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+                    <input
+                      type="checkbox"
+                      checked={allowsParque}
+                      onChange={(e) => setAllowsParque(e.target.checked)}
+                      className="w-4 h-4 rounded text-zinc-900"
+                    />
+                    <span>¿Realizás entrega presencial en Parque Rivadavia (CABA)?</span>
+                  </label>
+
+                  {/* Expanded Timing Configuration when Parque Rivadavia is checked */}
+                  {allowsParque && (
+                    <div className="ml-6 p-3 rounded-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 space-y-2.5">
+                      <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                        ¿Cuándo realizarás la entrega en el puesto?
+                      </div>
+
+                      <div className="space-y-1.5 text-xs text-zinc-700 dark:text-zinc-300">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="parqueTiming"
+                            value="sundays"
+                            checked={parqueTimingOption === 'sundays'}
+                            onChange={() => setParqueTimingOption('sundays')}
+                            className="text-zinc-900"
+                          />
+                          <span>Todos los domingos (10:00 a 14:00 hs - Vendedores CABA/GBA)</span>
+                        </label>
+
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="parqueTiming"
+                            value="2_weeks"
+                            checked={parqueTimingOption === '2_weeks'}
+                            onChange={() => setParqueTimingOption('2_weeks')}
+                            className="text-zinc-900"
+                          />
+                          <span>En las próximas 2 semanas (primer domingo disponible)</span>
+                        </label>
+
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="parqueTiming"
+                            value="1_month"
+                            checked={parqueTimingOption === '1_month'}
+                            onChange={() => setParqueTimingOption('1_month')}
+                            className="text-zinc-900"
+                          />
+                          <span>En 1 mes (primer domingo del próximo mes)</span>
+                        </label>
+
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="parqueTiming"
+                            value="custom_date"
+                            checked={parqueTimingOption === 'custom_date'}
+                            onChange={() => setParqueTimingOption('custom_date')}
+                            className="text-zinc-900"
+                          />
+                          <span>Fecha puntual específica:</span>
+                        </label>
+                      </div>
+
+                      {parqueTimingOption === 'custom_date' && (
+                        <div className="pt-1 pl-5">
+                          <input
+                            type="date"
+                            value={parqueCustomDate}
+                            onChange={(e) => setParqueCustomDate(e.target.value)}
+                            className="p-1.5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded text-xs text-zinc-900 dark:text-zinc-100 outline-none"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
+              {/* Private SKU and Notes */}
               <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700 space-y-2">
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
                   <Lock className="w-3.5 h-3.5" />
-                  <span>SKU Privado (solo para ti)</span>
+                  <span>SKU Privado (solo para tu control interno)</span>
                 </div>
                 <input
                   type="text"
                   value={sku}
                   onChange={(e) => setSku(e.target.value)}
-                  placeholder="Ej: BANDEJA-B12"
+                  placeholder="Ej: BANDEJA-B12 o ALBUM-3"
                   className="w-full p-1.5 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded text-xs text-zinc-800 dark:text-zinc-200 font-mono"
                 />
               </div>

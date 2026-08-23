@@ -72,8 +72,10 @@ export const AppContent: React.FC = () => {
         reverse: '/grading/748216107_27152987704401743_1830395168745860999_n.jpg'
       },
       seller: MOCK_SELLERS.numis_mardel,
-      allowsParqueRivadavia: newCoinData.allowsParqueRivadavia ?? true,
+      allowsParqueRivadavia: newCoinData.allowsParqueRivadavia ?? false,
+      parqueTiming: newCoinData.parqueTiming,
       allowsShipping: newCoinData.allowsShipping ?? true,
+      allowsLocalPickup: newCoinData.allowsLocalPickup ?? false,
       viewsCount: 1,
       createdAt: new Date().toISOString()
     };
