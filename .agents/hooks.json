@@ -1,0 +1,24 @@
+{
+  "macos-notifications": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "ask_question",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/antigravity_notifier.py question",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python3 scripts/antigravity_notifier.py stop",
+        "timeout": 10
+      }
+    ]
+  }
+}
