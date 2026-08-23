@@ -23,8 +23,8 @@ const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined
 
 export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [activeCurrency, setActiveCurrency] = useState<Currency>('ARS');
-  const [dolarBlueRate, setDolarBlueRate] = useState<number>(1350);
-  const [lastRateUpdate, setLastRateUpdate] = useState<string>('Hace 12 min (DolarHoy.com)');
+  const [dolarBlueRate, setDolarBlueRate] = useState<number>(1550);
+  const [lastRateUpdate, setLastRateUpdate] = useState<string>('Hace 5 min (DolarHoy.com)');
   const [isUpdatingRate, setIsUpdatingRate] = useState<boolean>(false);
 
   const toggleCurrency = () => {
@@ -35,7 +35,7 @@ export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setIsUpdatingRate(true);
     setTimeout(() => {
       // Simula ligera oscilación realista del Dólar Blue
-      const variations = [1345, 1350, 1355, 1360, 1340];
+      const variations = [1545, 1550, 1555, 1560, 1540];
       const nextRate = variations[Math.floor(Math.random() * variations.length)];
       setDolarBlueRate(nextRate);
       setLastRateUpdate('Actualizado recién (DolarHoy)');
