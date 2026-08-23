@@ -84,7 +84,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950">
+    <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors">
       <Header
         currentView={currentView}
         onNavigate={(view) => {
@@ -156,7 +156,6 @@ export const AppContent: React.FC = () => {
         }}
       />
 
-      {/* Global Interactive Modals */}
       <GradingAssistantModal
         isOpen={gradingModalOpen}
         onClose={() => setGradingModalOpen(false)}

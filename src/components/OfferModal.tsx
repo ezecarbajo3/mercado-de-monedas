@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CoinListing, Currency } from '../types/coin';
+import { CoinListing } from '../types/coin';
 import { useCurrency } from '../context/CurrencyContext';
-import { X, Handshake, AlertCircle, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { X, Handshake, CheckCircle } from 'lucide-react';
 
 interface OfferModalProps {
   isOpen: boolean;
@@ -38,7 +38,7 @@ export const OfferModal: React.FC<OfferModalProps> = ({
     setTimeout(() => {
       setIsSubmitting(false);
       setOfferSubmitted(true);
-    }, 800);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -48,56 +48,51 @@ export const OfferModal: React.FC<OfferModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-zinc-900 text-zinc-100 rounded-2xl border border-zinc-700/70 shadow-2xl p-6 sm:p-7">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div className="relative w-full max-w-md bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xl p-6">
         <button
           onClick={handleReset}
-          className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-xl transition-colors"
+          className="absolute top-4 right-4 p-1.5 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 rounded-lg"
         >
           <X className="w-5 h-5" />
         </button>
 
         {!offerSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-800">
-              <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                <Handshake className="w-5 h-5" />
-              </span>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex items-center gap-2 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+              <Handshake className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
               <div>
-                <h3 className="text-lg font-bold text-zinc-100 font-numismatic">
-                  Enviar Oferta Directa
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                  Enviar Oferta al Vendedor
                 </h3>
-                <p className="text-xs text-zinc-400">
-                  Negociación ágil sin intermediarios ni comisiones abusivas.
+                <p className="text-xs text-zinc-500">
+                  Propuesta directa de compra
                 </p>
               </div>
             </div>
 
             {/* Coin Summary */}
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/60 border border-zinc-800">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700">
               <img
                 src={listing.photos.obverse}
                 alt={listing.title}
-                className="w-14 h-14 object-cover rounded-lg border border-zinc-700/50"
+                className="w-12 h-12 object-contain rounded bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700"
               />
               <div className="flex-1 min-w-0">
-                <h4 className="text-sm font-semibold truncate text-zinc-200">{listing.title}</h4>
-                <div className="flex items-center gap-2 mt-1 text-xs text-zinc-400">
-                  <span>Precio publicado:</span>
-                  <span className="font-bold text-zinc-100">
-                    {formatDualPrice(listing.basePrice, listing.baseCurrency).primaryText}
-                  </span>
+                <h4 className="text-xs sm:text-sm font-semibold truncate text-zinc-900 dark:text-zinc-100">{listing.title}</h4>
+                <div className="text-xs text-zinc-500 mt-0.5">
+                  Publicado: <strong className="text-zinc-800 dark:text-zinc-200">{formatDualPrice(listing.basePrice, listing.baseCurrency).primaryText}</strong>
                 </div>
               </div>
             </div>
 
-            {/* Offer Input */}
-            <div className="space-y-2">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300">
+            {/* Input */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
                 Tu Oferta en {activeCurrency}
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 font-bold text-sm">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 font-bold text-sm">
                   {activeCurrency === 'ARS' ? '$' : 'US$'}
                 </span>
                 <input
@@ -105,78 +100,58 @@ export const OfferModal: React.FC<OfferModalProps> = ({
                   step={activeCurrency === 'ARS' ? '100' : '1'}
                   value={offerAmount}
                   onChange={(e) => setOfferAmount(e.target.value)}
-                  placeholder={`Ej: ${Math.round(currentListedPrice * 0.85)}`}
-                  className="w-full pl-12 pr-4 py-3 bg-zinc-950 border border-zinc-700 rounded-xl text-zinc-100 text-lg font-bold focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
+                  placeholder={`Ej: ${Math.round(currentListedPrice * 0.9)}`}
+                  className="w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg text-sm text-zinc-900 dark:text-zinc-100 font-semibold focus:outline-none focus:ring-2 focus:ring-zinc-400"
                   required
                 />
               </div>
 
               {numericOffer > 0 && (
-                <div className="flex items-center justify-between text-xs px-1 text-zinc-400">
-                  <span>
-                    Descuento propuesto:{' '}
-                    <strong className={discountPercent > 0 ? 'text-amber-400' : 'text-rose-400'}>
-                      {discountPercent}%
-                    </strong>
-                  </span>
+                <div className="flex items-center justify-between text-xs text-zinc-500">
+                  <span>Descuento sugerido: <strong>{discountPercent}%</strong></span>
                   {numericOffer >= currentListedPrice && (
-                    <span className="text-rose-400 font-medium">La oferta debe ser menor al precio publicado</span>
+                    <span className="text-rose-600">Debe ser menor al precio publicado</span>
                   )}
                 </div>
               )}
             </div>
 
-            {/* Rules and Limits */}
-            <div className="space-y-2 p-3.5 rounded-xl bg-amber-950/20 border border-amber-500/20 text-xs text-zinc-300">
-              <div className="flex items-center gap-2 text-amber-400 font-semibold">
-                <Clock className="w-4 h-4" />
-                <span>Condiciones de Negociación (Lógica Numismática)</span>
-              </div>
-              <ul className="space-y-1 text-zinc-400 pl-6 list-disc">
-                <li>Límite de <strong>3 ofertas por comprador</strong> en esta publicación.</li>
-                <li>Si el vendedor acepta, tienes <strong>24 horas de reserva exclusiva</strong> para pagar.</li>
-                <li>El vendedor puede Aceptar, Contraofertar o Rechazar.</li>
-              </ul>
+            {/* Rules */}
+            <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-600 dark:text-zinc-400 space-y-1">
+              <div>• Límite de <strong>3 ofertas por comprador</strong> en esta publicación.</div>
+              <div>• Si el vendedor acepta, tendrás <strong>24 horas</strong> para abonar.</div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center justify-end gap-3 pt-2">
+            {/* Buttons */}
+            <div className="flex items-center justify-end gap-2 pt-2">
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-4 py-2.5 text-sm text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-xl transition-all"
+                className="px-3.5 py-2 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 bg-zinc-100 dark:bg-zinc-800 rounded-lg"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting || numericOffer <= 0 || numericOffer >= currentListedPrice}
-                className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-bold text-zinc-950 bg-amber-400 hover:bg-amber-300 disabled:opacity-40 disabled:pointer-events-none rounded-xl transition-all shadow-lg shadow-amber-400/20"
+                className="px-4 py-2 text-xs font-semibold text-white dark:text-zinc-900 bg-zinc-900 dark:bg-zinc-100 rounded-lg disabled:opacity-40"
               >
-                {isSubmitting ? 'Enviando oferta...' : 'Enviar Oferta (Intento 1 de 3)'}
-                <ArrowRight className="w-4 h-4" />
+                {isSubmitting ? 'Enviando...' : 'Enviar Oferta (1 de 3)'}
               </button>
             </div>
           </form>
         ) : (
-          <div className="py-6 text-center space-y-4">
-            <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">
-              <CheckCircle className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-zinc-100 font-numismatic">¡Oferta Enviada al Vendedor!</h3>
-              <p className="mt-1 text-sm text-zinc-400 max-w-sm mx-auto">
-                Tu oferta de <strong>{formatAmount(numericOffer, activeCurrency)}</strong> fue notificada a <strong>{listing.seller.username}</strong>.
-              </p>
-            </div>
-            <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 text-xs text-zinc-400 max-w-xs mx-auto">
-              Te notificaremos por email y en la campana de alertas en cuanto responda.
-            </div>
+          <div className="py-6 text-center space-y-3">
+            <CheckCircle className="w-10 h-10 mx-auto text-emerald-600 dark:text-emerald-400" />
+            <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">Oferta Enviada</h3>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">
+              Se notificó tu oferta de <strong>{formatAmount(numericOffer, activeCurrency)}</strong> a {listing.seller.username}.
+            </p>
             <button
               onClick={handleReset}
-              className="px-6 py-2.5 text-sm font-bold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-xl transition-all"
+              className="px-4 py-2 text-xs font-semibold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg"
             >
-              Entendido
+              Cerrar
             </button>
           </div>
         )}

@@ -1,163 +1,134 @@
 import React, { useState } from 'react';
-import { User, ShieldCheck, MapPin, Globe, Award, CheckCircle2, Sliders, Sparkles, Lock, Package } from 'lucide-react';
+import { User, MapPin, Globe, Award, CheckCircle2 } from 'lucide-react';
 
 export const ProfileView: React.FC = () => {
   const [marketScope, setMarketScope] = useState<'national' | 'international'>('national');
-  const [parqueOption, setParqueOption] = useState<boolean>(true);
   const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
 
   const handleSave = () => {
     setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
+    setTimeout(() => setSaveSuccess(false), 2500);
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn">
+    <div className="max-w-3xl mx-auto space-y-6">
       {/* Header Profile */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-zinc-900 border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 text-2xl font-bold">
+      <div className="p-6 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex items-center justify-center text-zinc-700 dark:text-zinc-300 font-bold text-lg">
             👤
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-bold text-zinc-100 font-numismatic">
+              <h1 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 ColeccionistaDemo
               </h1>
-              <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                Cuenta Unificada (Comprador / Vendedor)
+              <span className="text-xs px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
+                Comprador / Vendedor
               </span>
             </div>
-            <p className="text-xs text-zinc-400 mt-1 flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-              <span>CABA (Caballito), Buenos Aires, Argentina • Miembro desde 2024</span>
+            <p className="text-xs text-zinc-500 mt-0.5">
+              CABA (Caballito), Buenos Aires • Miembro desde 2024
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="text-right">
-            <span className="text-xs text-zinc-500 block">Reputación Global</span>
-            <span className="text-lg font-bold text-amber-400">★ 4.98 / 5.0</span>
-          </div>
+        <div className="text-right">
+          <span className="text-xs text-zinc-500 block">Calificación</span>
+          <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">★ 4.98 / 5.0</span>
         </div>
       </div>
 
       {saveSuccess && (
-        <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-sm flex items-center gap-3 animate-bounce">
-          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-          <span><strong>¡Preferencias actualizadas con éxito!</strong> El filtro del catálogo se adaptó a tu configuración.</span>
+        <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 text-emerald-800 dark:text-emerald-300 text-xs flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>Preferencias guardadas con éxito.</span>
         </div>
       )}
 
-      {/* Onboarding Bipolar Selector (Section 2.B of LOGICA_DEL_PROYECTO.md) */}
-      <section className="p-6 sm:p-8 rounded-3xl bg-zinc-900 border border-zinc-800 space-y-6">
-        <div className="flex items-center gap-2 pb-2 border-b border-zinc-800">
-          <Globe className="w-5 h-5 text-amber-400" />
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-zinc-100 font-numismatic">
-              Alcance de Mercado y Preferencias de Onboarding
-            </h2>
-            <p className="text-xs text-zinc-400">
-              ¿Qué monedas te interesa ver y comprar de manera predeterminada?
-            </p>
-          </div>
+      {/* Onboarding Scope */}
+      <section className="p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-4 shadow-xs">
+        <div>
+          <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+            Preferencia de Catálogo y Origen
+          </h2>
+          <p className="text-xs text-zinc-500">
+            ¿Qué publicaciones te interesa priorizar en la búsqueda?
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             type="button"
             onClick={() => setMarketScope('national')}
-            className={`p-5 rounded-2xl border text-left transition-all relative overflow-hidden ${
+            className={`p-4 rounded-xl border text-left transition-all ${
               marketScope === 'national'
-                ? 'bg-amber-950/30 border-amber-400 text-zinc-100 ring-2 ring-amber-400/30'
-                : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                ? 'border-zinc-900 dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-800/80 ring-1 ring-zinc-900 dark:ring-zinc-100'
+                : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400'
             }`}
           >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xl">🇦🇷</span>
-              <span className={`w-5 h-5 rounded-full border flex items-center justify-center ${marketScope === 'national' ? 'border-amber-400 bg-amber-400 text-zinc-950' : 'border-zinc-700'}`}>
-                {marketScope === 'national' && '✓'}
-              </span>
-            </div>
-            <h3 className="text-sm font-bold text-zinc-100">Solo Vendedores de Argentina (Nacional)</h3>
-            <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-              Oculta publicaciones extranjeras para priorizar transacciones en ARS/USD locales y entrega en Parque Rivadavia.
+            <div className="font-bold text-sm text-zinc-900 dark:text-zinc-100">Solo Vendedores de Argentina (Nacional)</div>
+            <p className="text-xs text-zinc-500 mt-1">
+              Prioriza compras en ARS/USD locales y entregas en Parque Rivadavia.
             </p>
           </button>
 
           <button
             type="button"
             onClick={() => setMarketScope('international')}
-            className={`p-5 rounded-2xl border text-left transition-all relative overflow-hidden ${
+            className={`p-4 rounded-xl border text-left transition-all ${
               marketScope === 'international'
-                ? 'bg-amber-950/30 border-amber-400 text-zinc-100 ring-2 ring-amber-400/30'
-                : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                ? 'border-zinc-900 dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-800/80 ring-1 ring-zinc-900 dark:ring-zinc-100'
+                : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400'
             }`}
           >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xl">🌎</span>
-              <span className={`w-5 h-5 rounded-full border flex items-center justify-center ${marketScope === 'international' ? 'border-amber-400 bg-amber-400 text-zinc-950' : 'border-zinc-700'}`}>
-                {marketScope === 'international' && '✓'}
-              </span>
-            </div>
-            <h3 className="text-sm font-bold text-zinc-100">Vendedores de Argentina e Internacionales</h3>
-            <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-              Muestra piezas de subastas y coleccionistas del resto del mundo (EE.UU., España, Europa).
+            <div className="font-bold text-sm text-zinc-900 dark:text-zinc-100">Nacional e Internacional</div>
+            <p className="text-xs text-zinc-500 mt-1">
+              Muestra piezas de coleccionistas y subastas del resto del mundo.
             </p>
           </button>
         </div>
       </section>
 
-      {/* Community Numismatic Reputation (Section 11.B) */}
-      <section className="p-6 sm:p-8 rounded-3xl bg-zinc-900 border border-zinc-800 space-y-6">
-        <div className="flex items-center gap-2 pb-2 border-b border-zinc-800">
-          <Award className="w-5 h-5 text-emerald-400" />
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-zinc-100 font-numismatic">
-              Métricas de Reputación Numismática Específica
-            </h2>
-            <p className="text-xs text-zinc-400">
-              Evaluación comunitaria obligatoria para garantizar transparencia y rigor.
-            </p>
-          </div>
+      {/* Numismatic Reputation */}
+      <section className="p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-4 shadow-xs">
+        <div>
+          <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+            Reputación Comunitaria
+          </h2>
+          <p className="text-xs text-zinc-500">
+            Métricas registradas por compradores tras las entregas
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-            <span className="text-xs text-zinc-400 font-semibold block">1. Exactitud de Conservación</span>
-            <div className="text-2xl font-bold text-emerald-400 font-mono">100%</div>
-            <p className="text-[11px] text-zinc-500">
-              El estado de la pieza coincidió exactamente con el grado declarado (PR-UNC).
-            </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700">
+            <span className="text-zinc-500 block">Exactitud del Grado</span>
+            <div className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">100%</div>
+            <p className="text-[11px] text-zinc-500 mt-0.5">Sin discrepancias de conservación</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-            <span className="text-xs text-zinc-400 font-semibold block">2. Embalaje Numismático</span>
-            <div className="text-2xl font-bold text-emerald-400 font-mono">99.4%</div>
-            <p className="text-[11px] text-zinc-500">
-              Piezas protegidas en cartones o cápsulas sin riesgo de rayaduras.
-            </p>
+          <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700">
+            <span className="text-zinc-500 block">Calidad de Embalaje</span>
+            <div className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">99.4%</div>
+            <p className="text-[11px] text-zinc-500 mt-0.5">Cápsulas y cartones protectores</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-            <span className="text-xs text-zinc-400 font-semibold block">3. Puntualidad y Entrega</span>
-            <div className="text-2xl font-bold text-emerald-400 font-mono">98.8%</div>
-            <p className="text-[11px] text-zinc-500">
-              Cumplimiento estricto en puestos de Parque Rivadavia y despachos de correo.
-            </p>
+          <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700">
+            <span className="text-zinc-500 block">Puntualidad</span>
+            <div className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">98.8%</div>
+            <p className="text-[11px] text-zinc-500 mt-0.5">Entregas en fecha pactada</p>
           </div>
         </div>
       </section>
 
-      {/* Save Button */}
-      <div className="flex items-center justify-end gap-4">
+      <div className="flex justify-end">
         <button
           type="button"
           onClick={handleSave}
-          className="px-8 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-sm shadow-lg shadow-amber-400/20 transition-all hover:scale-[1.02]"
+          className="px-5 py-2.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold text-xs sm:text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-xs"
         >
-          Guardar Cambios de Perfil
+          Guardar Cambios
         </button>
       </div>
     </div>
