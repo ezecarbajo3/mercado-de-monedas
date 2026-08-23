@@ -58,16 +58,21 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
-        {/* Brand */}
-        <div
-          onClick={() => onNavigate('home')}
-          className="flex items-center gap-2 cursor-pointer select-none shrink-0"
+        {/* Brand Logo & Icon (Ir al inicio) */}
+        <button
+          type="button"
+          onClick={() => {
+            onSearchChange('');
+            onNavigate('home');
+          }}
+          className="flex items-center gap-2 text-left cursor-pointer select-none shrink-0 group focus:outline-none"
+          title="Ir al Inicio"
         >
-          <span className="text-xl">🪙</span>
-          <span className="font-semibold text-base text-zinc-900 dark:text-zinc-100 tracking-tight">
+          <span className="text-xl group-hover:scale-110 transition-transform">🪙</span>
+          <span className="font-semibold text-base text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
             Mercado de Monedas
           </span>
-        </div>
+        </button>
 
         {/* Search */}
         <div className="hidden md:flex flex-1 max-w-md mx-2">

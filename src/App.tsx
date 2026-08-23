@@ -90,6 +90,10 @@ export const AppContent: React.FC = () => {
       <Header
         currentView={currentView}
         onNavigate={(view) => {
+          if (view === 'home') {
+            setSelectedCoin(null);
+            setSearchQuery('');
+          }
           setCurrentView(view);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
